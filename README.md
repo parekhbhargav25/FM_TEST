@@ -10,6 +10,9 @@
 ```bash
 python3 -m venv venv
 ```
+## Demo Video
+[Watch demo video on YouTube](https://youtu.be/DwyLnAkrmlE)
+```
 
 ### 2. Activate Virtual Environment
 #### For macOS/Linux:
@@ -50,7 +53,3 @@ npm start
 
 ## Accessing the Application
 - Once both the backend Flask server and frontend development server are running, you can access the application in your web browser at `http://localhost:3000`.
-
-## Demo Video
-[Watch demo video on YouTube](https://youtu.be/DwyLnAkrmlE)
-```
