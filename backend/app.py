@@ -6,7 +6,6 @@ app = Flask(__name__)
 app.secret_key = 'njnjfrweadvgwedgwedse'
 CORS(app)
 
-# Replace 'username', 'password', 'host', 'port', and 'database_name' with your MySQL credentials and database information
 db = pymysql.connect(host="localhost", user="root", password="BA822sV9gHM3F5jGoVUc", port=3306, database="shop")
 
 @app.route('/login', methods=['POST'])
@@ -29,7 +28,6 @@ def login():
             "username": user[3],
             "email": user[4],
             "password": user[5]
-            # Add more fields as needed
         }
         session.permanent = True
         session['user'] = user_data
@@ -54,7 +52,6 @@ def signup():
 
     try:
         cursor = db.cursor()
-        # Check if the user already exists
         cursor.execute("SELECT * FROM Users WHERE email = %s", (email,))
         existing_user = cursor.fetchone()
         if existing_user:
@@ -71,7 +68,6 @@ def signup():
             "last_name": lastName,
             "username": userName,
             "email": email
-            # Add more fields as needed
         }
         session.permanent = True
         session['user'] = Signup_user_data
@@ -85,13 +81,11 @@ def signup():
 @app.route("/allUsers")
 def get_users():
     try:
-        # Fetch products from the database
         cursor = db.cursor()
 
         cursor.execute("SELECT * FROM Users")
         users = cursor.fetchall()
 
-        # Convert fetched data into a list of dictionaries
         user_list = []
         for user in users:
             user_list_dict = {
@@ -104,7 +98,6 @@ def get_users():
             }
             user_list.append(user_list_dict)
 
-        # Return product data as JSON response
         return jsonify(user_list)
     except Exception as e:
         return jsonify({"error": str(e)})
@@ -112,12 +105,10 @@ def get_users():
 @app.route("/getProducts")
 def get_products():
     try:
-        # Fetch products from the database
         cursor = db.cursor()
         cursor.execute("SELECT * FROM Products")
         products = cursor.fetchall()
 
-        # Convert fetched data into a list of dictionaries
         product_list = []
         for product in products:
             product_dict = {
